@@ -49,6 +49,11 @@ struct ContentView: View {
             return
         }
         
+        guard isStartWord(word: answer) else {
+            wordError(title: "Word is the start word", message: "You can't use it")
+            return
+        }
+        
         guard isOriginal(word: answer) else {
             wordError(title: "Word used already", message: "Be more original")
             return
@@ -70,6 +75,10 @@ struct ContentView: View {
     
     func isOriginal(word: String) -> Bool {
         !usedWords.contains(word)
+    }
+    
+    func isStartWord(word: String) -> Bool {
+        rootWord != word
     }
     
     func isPossible(word: String) -> Bool {
