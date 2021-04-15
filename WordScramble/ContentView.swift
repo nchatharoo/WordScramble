@@ -29,6 +29,9 @@ struct ContentView: View {
                     Image(systemName: "\($0.count).circle")
                         Text($0)
                 }
+                
+                Text("Your score is: \(score())")
+                    .padding()
             }
             .navigationBarTitle(rootWord)
             .navigationBarItems(leading:
@@ -125,6 +128,14 @@ struct ContentView: View {
         }
 
         fatalError("Could not load start.txt from bundle.")
+    }
+    
+    func score() -> Int {
+        var total = 0
+        usedWords.forEach { word in
+            total += word.count
+        }
+        return total
     }
 }
 
